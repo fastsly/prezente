@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import benef from './beneficiari.js'
+import BeneficiariList from './BeneficiariList'
+import Temperatura from './Temperatura'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor (){
+    super();
+    this.state={
+      temp : '',
+      name : ''
+    }
+  }
+
+  onSubmit = () =>{
+    //i send data to server
+    console.log('the temp of '+ this.state.name+' is '+this.state.temp)
+  }
+
+  setTemp = (event) =>{
+    this.setState({temp: event.target.value})
+  }
+
+  onSelect = (event) =>{
+    this.setState({name: event.target.value})
+  }
+  
+  render(){
+    return (
+      <div className="App">
+        <h1>Prezente</h1>
+        <BeneficiariList benef= {benef} onSelect = {this.onSelect}/>
+        <Temperatura setTemp = {this.setTemp}/>
+        <button id='button' onClick={this.onSubmit}>Submit</button>
+      </div>
+    );
+  }
 }
 
 export default App;
