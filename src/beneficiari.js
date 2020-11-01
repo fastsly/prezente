@@ -1,21 +1,27 @@
 const benef = [
     {
-        name:'Putnoki Lorand'
+        name:'Putnoki Lorand',
+        cosemnat:'Szalai Laszlo'
     },
     {
-        name:'Buroi Alexandra'
+        name:'Buroi Alexandra',
+        cosemnat:'Szalai Laszlo'
     },
     {
-        name:'Covaci Emilia'
+        name:'Covaci Emilia',
+        cosemnat:'Szalai Laszlo'
     },
     {
-        name:'Cordovan Loredana'
+        name:'Cordovan Loredana',
+        cosemnat:'Szalai Laszlo'
     },
     {
-        name:'Kanalas Monika'
+        name:'Kanalas Monika',
+        cosemnat:'Szalai Laszlo'
     },
     {
-        name:'Simon Angela'
+        name:'Simon Angela',
+        cosemnat:'Szalai Laszlo'
     }
 ];
 export default benef;

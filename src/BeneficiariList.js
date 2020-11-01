@@ -1,18 +1,24 @@
 import React from 'react'
-
-
+//import { Checkbox } from '@bit/segmentio.evergreen.checkbox';
+import Input from "./Input"
 
 
 function BeneficiariList (props){
-    const benefArray = props.benef.map((user,i) =>{
-        return <option key={i} value={user.name}>{user.name}</option>
-      })
+    // const benefArray = props.benef.map((user,i) =>{
+    //     return <Checkbox label={user.name} onChange={props.onCheck} />
+    //   })
+
     return(
+        <div>
         <p>Beneficiar:{' '}
-            <select onClick={props.onSelect}>
+            {/* <select onClick={props.onSelect}>
                 {benefArray}
-            </select>
+            </select> */}
         </p>
+            <div>
+            <Input benef={props.benef} onCheck={props.onCheck}/>
+            </div>
+        </div>
     )
 }
 export default BeneficiariList;
