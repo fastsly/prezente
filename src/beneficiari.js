@@ -202,7 +202,7 @@ const benef = [
     {
         name:'Zambo Gyorgy',
         cosemnat:'Szalai Laszlo'
-    }
+    },
     {
         name:'Szalai Laszlo',
         cosemnat:'Szalai Laszlo'
