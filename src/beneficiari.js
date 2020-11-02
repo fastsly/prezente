@@ -12,6 +12,14 @@ const benef = [
         cosemnat:'Szalai Laszlo'
     },
     {
+        name:'Bojan Gheorghe',
+        cosemnat:'Gergely Livia'
+    },
+    {
+        name:'Borbely Marin',
+        cosemnat:'Gergely Livia'
+    },
+    {
         name:'Bot Mariana',
         cosemnat:'Gergely Livia'
     },
@@ -64,6 +72,10 @@ const benef = [
         cosemnat:'Gergely Livia'
     },
     {
+        name:'Enache Dan',
+        cosemnat:'Gergely Livia'
+    },
+    {
         name:'Farkas Eniko',
         cosemnat:'Gergely Livia'
     },
@@ -72,7 +84,15 @@ const benef = [
         cosemnat:'Gergely Livia'
     },
     {
+        name:'Halmajan Bogdan',
+        cosemnat:'Gergely Livia'
+    },
+    {
         name:'Haikai Ileana',
+        cosemnat:'Gergely Livia'
+    },
+    {
+        name:'Iacob Amalia',
         cosemnat:'Gergely Livia'
     },
     {
@@ -94,6 +114,10 @@ const benef = [
     {
         name:'Kozak Ianos',
         cosemnat:'Szalai Laszlo'
+    },
+    {
+        name:'Lakatos Maria',
+        cosemnat:'Gergely Livia'
     },
     {
         name:'Lazar Bogdan',
@@ -120,6 +144,14 @@ const benef = [
         cosemnat:'Gergely Livia'
     },
     {
+        name:'Paraschiva Corina',
+        cosemnat:'Gergely Livia'
+    },
+    {
+        name:'Paunescu Luminita',
+        cosemnat:'Gergely Livia'
+    },
+    {
         name:'Popa Etelca',
         cosemnat:'Gergely Livia'
     },
@@ -134,6 +166,10 @@ const benef = [
     {
         name:'Racz Monika',
         cosemnat:'Szalai Laszlo'
+    },
+    {
+        name:'Rezmuves Dezso',
+        cosemnat:'Gergely Livia'
     },
     {
         name:'Stoian Sorin',
@@ -156,6 +192,18 @@ const benef = [
         cosemnat:'Szalai Laszlo'
     },
     {
+        name:'Varga Augustin',
+        cosemnat:'Gergely Livia'
+    },
+    {
+        name:'Varga Jozsef',
+        cosemnat:'Gergely Livia'
+    },
+    {
+        name:'Zambo Gyorgy',
+        cosemnat:'Szalai Laszlo'
+    }
+    {
         name:'Szalai Laszlo',
         cosemnat:'Szalai Laszlo'
     },
@@ -163,9 +211,5 @@ const benef = [
         name:'Gergely Livia',
         cosemnat:'Gergely Livia'
     },
-    {
-        name:'Zambo Gyorgy',
-        cosemnat:'Szalai Laszlo'
-    }
 ];
 export default benef;
