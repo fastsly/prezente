@@ -22,7 +22,10 @@ class App extends React.Component {
     body: JSON.stringify(
       this.state.prezente
     ),
-    });
+    }).then((res, req) =>{
+      alert('Am reusit'+res.body)
+    })
+    .catch(err => alert("a fost o eroare "+err))
     //console.log('the temp of '+ this.state.name+' is '+this.state.temp)
   }
 
