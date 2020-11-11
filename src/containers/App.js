@@ -15,20 +15,13 @@ import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
 
 function App () {
-  // constructor (){
-  //   super();
-  //   this.state={
-  //     temp : '',
-  //     name : '',
-  //     prezente:[]
-  //   }
-  // }
+
   const [prezentaDate, setPrezentaDate] = useState(new Date());
   const [temp, setTemp] = useState('')
 const [name, setName] = useState ('')
 const [prezente,setPrezente]= useState([])
   const onSubmit = () =>{
-    //i send data to server
+    // send data to server
     // fetch("http://frozen-basin-35628.herokuapp.com/daily", {
     // method: "post",
     // headers: { "Content-Type": "application/json" },
@@ -41,10 +34,6 @@ const [prezente,setPrezente]= useState([])
     // .catch(err => alert("a fost o eroare "+err))
     console.log('the temp of '+ name+' is '+temp+' and date is'+ prezentaDate)
   }
-
-  // setTemp = (event) =>{
-  //   this.setState({temp: event.target.value})
-  // }
 
   const onCheck = (event) =>{
     //this.setState({name: event.target.value})
@@ -70,26 +59,8 @@ const [prezente,setPrezente]= useState([])
   }
   
     return (
-      // <div className="App">
-      //   <h1>Prezente</h1>
-      //    {/* <DatePicker selected={prezentaDate} onChange={date => setPrezentaDate(date)}  />
-      //   <BeneficiariList benef= {benef} onCheck={onCheck} />
-      //   <Submit onSubmit = {onSubmit}/> */}
-      //   <SignIn/>
-      // </div>
       <Router>
       <div>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">SignIn</Link>
-            </li>
-            <li>
-              <Link to="/dashBoard">DashBoard</Link>
-            </li>
-          </ul>
-        </nav> */}
-
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>

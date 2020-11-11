@@ -53,8 +53,6 @@ export default function SignIn() {
   const classes = useStyles();
   let history = useHistory();
   function handleClick () {
-      
-  
       history.push("/dashBoard");
   }
   return (
