@@ -1,11 +1,18 @@
 import React,{useState} from 'react';
 import DatePicker from "react-datepicker";
-import CalendarContainer from "react-datepicker";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './App.css';
-import benef from './beneficiari.js'
-import BeneficiariList from './BeneficiariList'
-import Submit from './Submit'
+import benef from '../beneficiari.js'
+import BeneficiariList from '../components/BeneficiariList'
+import Submit from '../components/Submit'
 import "react-datepicker/dist/react-datepicker.css";
+import SignIn from '../components/SignIn';
+import Dashboard from '../components/Dashboard';
 
 function App () {
   // constructor (){
@@ -63,12 +70,44 @@ const [prezente,setPrezente]= useState([])
   }
   
     return (
-      <div className="App">
-        <h1>Prezente</h1>
-         <DatePicker selected={prezentaDate} onChange={date => setPrezentaDate(date)}  />
-        <BeneficiariList benef= {benef} onCheck={onCheck} />
-        <Submit onSubmit = {onSubmit}/>
+      // <div className="App">
+      //   <h1>Prezente</h1>
+      //    {/* <DatePicker selected={prezentaDate} onChange={date => setPrezentaDate(date)}  />
+      //   <BeneficiariList benef= {benef} onCheck={onCheck} />
+      //   <Submit onSubmit = {onSubmit}/> */}
+      //   <SignIn/>
+      // </div>
+      <Router>
+      <div>
+        {/* <nav>
+          <ul>
+            <li>
+              <Link to="/">SignIn</Link>
+            </li>
+            <li>
+              <Link to="/dashBoard">DashBoard</Link>
+            </li>
+          </ul>
+        </nav> */}
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/dashBoard">
+            {/* <div className="App">
+              <h1>Prezente</h1>
+              <DatePicker selected={prezentaDate} onChange={date => setPrezentaDate(date)}  />
+              <BeneficiariList benef= {benef} onCheck={onCheck} />
+              <Submit onSubmit = {onSubmit}/> 
+            </div>    */}
+            <Dashboard prezentaDate={prezentaDate} setPrezentaDate={setPrezentaDate} benef={benef} onCheck={onCheck} onSubmit={onSubmit}/>
+          </Route>
+          <Route path="/">
+            <SignIn />
+          </Route>
+        </Switch>
       </div>
+    </Router>
     );
   
 }
