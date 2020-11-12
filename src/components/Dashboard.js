@@ -29,6 +29,8 @@ import {
   useHistory,
 } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import Status from './Status'
+import
 
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
@@ -57,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    //paddingRight: 0, // keep right padding when drawer closed
+    
   },
   toolbarIcon: {
     display: "flex",
@@ -105,9 +108,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(1),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
+      width: theme.spacing(1),
     },
   },
   appBarSpacer: theme.mixins.toolbar,
@@ -133,12 +136,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [test, setTest] = React.useState('test');
-  // const handleRoute =()=>{
-  //   setTest('bla')
-  //   console.log(test);
-  // }
+  const [open, setOpen] = React.useState(false);
+  const [test, setTest] = React.useState("prezente");
+  let history = useHistory();
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -147,18 +148,19 @@ export default function Dashboard(props) {
   };
 
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  let history = useHistory();
-  console.log('we '+test);
+
   function handlePrezenteClick() {
-      console.log(history);
-      setTest('prezente')
-      history.push("/dashBoard/prezente");
-  }
-  function handleStatusClick() { 
-    setTest('status')
     console.log(history);
-      history.push("/dashBoard/status");
+    setTest("prezente");
+    history.push("/dashBoard/prezente");
   }
+
+  function handleStatusClick() {
+    setTest("status");
+    console.log(history);
+    history.push("/dashBoard/status");
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -227,26 +229,24 @@ export default function Dashboard(props) {
         <Container className={classes.container}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              
-                  {test==='prezente'?
-                      <Paper className={classes.paper}>
-                        <BeneficiariList
-                          className={classes.content}
-                          benef={props.benef}
-                          onCheck={props.onCheck}
-                        />
-                        <Submit onSubmit={props.onSubmit} />
-                        <DatePicker
-                          selected={props.prezentaDate}
-                          onChange={(date) => props.setPrezentaDate(date)}
-                        />
-                      </Paper>
-                   
-                    :
-                      <Paper className={classes.paper}>
-                        <p>Status</p>
-                      </Paper>
-}
+              {test === "prezente" ? (
+                <Paper className={classes.paper}>
+                  <BeneficiariList
+                    className={classes.content}
+                    benef={props.benef}
+                    onCheck={props.onCheck}
+                  />
+                  <Submit onSubmit={props.onSubmit} />
+                  <DatePicker
+                    selected={props.prezentaDate}
+                    onChange={(date) => props.setPrezentaDate(date)}
+                  />
+                </Paper>
+              ) : (
+                <Paper className={classes.paper}>
+                  <Status/>
+                </Paper>
+              )}
             </Grid>
           </Grid>
           <Box pt={4}>
