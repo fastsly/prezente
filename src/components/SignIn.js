@@ -6,8 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+//import Grid from '@material-ui/core/Grid';
+//import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,18 +15,18 @@ import Container from '@material-ui/core/Container';
 import { useHistory } from "react-router-dom";
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,13 +48,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
-  let history = useHistory();
-  function handleClick () {
-      history.push("/dashBoard");
+
+  const onNameChange = (event) => {
+    props.setSignInName( event.target.value)
   }
+
+  const onPasswordChange = (event) => {
+    props.setSignInPassword( event.target.value)
+  }
+
+ let history = useHistory();
+ function handleSignIn () {
+  fetch('http://localhost:3001/signin', {
+    method: 'post',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      name: props.signInName,
+      password: props.signInPassword
+    })
+  })
+    .then(response => response.json())
+    .then(user => {
+      if (user.name){
+        props.setUser({name:user.name, admin:user.admin,isAuth:true})
+        history.push("/dashBoard");
+        //console.log('we pushed dashboard');
+        
+
+      }
+  }).catch(console.log)
+  //this.props.onRouteChange('home') 
+}
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -71,11 +98,12 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="User Name"
+            name="userName"
+            autoComplete="userName"
             autoFocus
+            onChange={onNameChange}
           />
           <TextField
             variant="outlined"
@@ -87,6 +115,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={onPasswordChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -100,7 +129,7 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
             // href="/dashBoard"
-            onClick={handleClick}
+            onClick={handleSignIn}
           >
             Sign In
           </Button>

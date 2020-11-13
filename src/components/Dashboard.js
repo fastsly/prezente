@@ -23,14 +23,15 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+  // BrowserRouter as Router,
+  // Switch,
+  // Route,
   useHistory,
 } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import Status from './Status'
-import
+import "react-datepicker/dist/react-datepicker.css";
+//import
 
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
@@ -38,6 +39,8 @@ import
 // import Orders from './Orders';
 import BeneficiariList from "./BeneficiariList";
 import Submit from "./Submit";
+import { FormControlLabel } from "@material-ui/core";
+
 
 function Copyright() {
   return (
@@ -147,7 +150,7 @@ export default function Dashboard(props) {
     setOpen(false);
   };
 
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   function handlePrezenteClick() {
     console.log(history);
@@ -220,27 +223,38 @@ export default function Dashboard(props) {
           <ListItem button onClick={handleStatusClick}>
             <ListItemText primary="Status" />
           </ListItem>
+          {props.user.admin?
+            <ListItem button onClick={handleStatusClick}>
+              <ListItemText primary="Admin" />
+            </ListItem>
+            : null
+          }
         </List>
         {/* <Divider /> */}
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
+        <Container maxWidth='100%' className={classes.container}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               {test === "prezente" ? (
                 <Paper className={classes.paper}>
+                  <Typography component="h1" variant="h5">
+                    {"Data: "} 
+                    <DatePicker
+                      selected={props.prezentaDate}
+                      onChange={(date) => props.setPrezentaDate(date)}
+                    />
+                  </Typography>
                   <BeneficiariList
                     className={classes.content}
                     benef={props.benef}
                     onCheck={props.onCheck}
                   />
+                  {/* <div>{props.prezenteNr}</div> */}
+                  <Typography component="h1" variant="h5">Nr de prezente: {props.prezente.length}</Typography>
                   <Submit onSubmit={props.onSubmit} />
-                  <DatePicker
-                    selected={props.prezentaDate}
-                    onChange={(date) => props.setPrezentaDate(date)}
-                  />
                 </Paper>
               ) : (
                 <Paper className={classes.paper}>

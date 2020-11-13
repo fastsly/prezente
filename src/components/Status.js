@@ -13,9 +13,20 @@ function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
 }
 
-const rows = [
-  createData(0, '16 Mar, 2019', 'Elvis Presley', 'Tupelo, MS', 'VISA ⠀•••• 3719', 312.44),
-];
+const rows = [];
+
+const populateRows = () => {
+  fetch('http://localhost:3001/status', {
+    method: 'get',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({})
+  })
+    .then(response => response.json())
+    .then(user => {
+      if (user.name){
+      }
+  }).catch(console.log)
+}
 
 function preventDefault(event) {
   event.preventDefault();
