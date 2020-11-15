@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,24 +8,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [];
-
-const populateRows = () => {
-  fetch('http://localhost:3001/status', {
-    method: 'get',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({})
-  })
-    .then(response => response.json())
-    .then(user => {
-      if (user.name){
-      }
-  }).catch(console.log)
+// Generate Status Data
+function createData(name, planpers, fisamonit) {
+  return { name, planpers, fisamonit };
 }
 
 function preventDefault(event) {
@@ -38,36 +23,70 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
+
+export default function Status() {
+  const [rows, setRows] = useState()
+  useEffect(()=>{
+    fetch('http://localhost:3001/status', {
+    method: 'get',
+    headers: {'Content-Type': 'application/json'}
+  })
+    .then(response => response.json())
+    .then(data => {
+      //console.table(data)
+      const tempRows =[]
+      data.map(value =>{
+        if (value.name && value.fisamonit && value.planpers){
+          //console.log(value)
+          const tempDate=[
+            new Date(value.planpers), 
+            new Date(value.fisamonit)
+          ]
+          tempRows.push(createData(
+            value.name,
+            tempDate[0].getFullYear()+'-'+tempDate[0].getMonth()+'-'+tempDate[0].getDate(),
+            tempDate[1].getFullYear()+'-'+tempDate[1].getMonth()+'-'+tempDate[1].getDate()
+            ))
+        }
+        return null
+      })
+      setRows(tempRows)
+  }).catch(console.log)
+  },[])
   const classes = useStyles();
   return (
     <React.Fragment>
       <Title>Starea fiserlor</Title>
       <Table size="small">
         <TableHead>
-          <TableRow>
+        <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Plan Personalizat</TableCell>
             <TableCell>Fisa Monitorizare</TableCell>
-            <TableCell>Registru Saptamanal</TableCell>
-            <TableCell align="left">Fisa de Evaluare</TableCell>
+            {/* <TableCell>Registru Saptamanal</TableCell> */}
+            {/* <TableCell align="left">Fisa de Evaluare</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows?
+          rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="left">{row.amount}</TableCell>
+              <TableCell>{row.planpers}</TableCell>
+              <TableCell>{row.fisamonit}</TableCell>
+              {/* <TableCell>{row.paymentMethod}</TableCell> 
+              <TableCell align="left">{row.amount}</TableCell> */}
             </TableRow>
-          ))}
+          ))
+          :<TableRow>
+
+          </TableRow>
+          }
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
-          See more benef
+          See more bene
         </Link>
       </div>
     </React.Fragment>

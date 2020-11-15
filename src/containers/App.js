@@ -1,10 +1,8 @@
 import React,{useState} from 'react';
 //import DatePicker from "react-datepicker";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  useHistory,
   Redirect,
 } from "react-router-dom";
 import './App.css';
@@ -18,8 +16,8 @@ import Dashboard from '../components/Dashboard';
 function App () {
 
   const [prezentaDate, setPrezentaDate] = useState(new Date());
-  const [temp, setTemp] = useState('')
-  const [name, setName] = useState ('')
+  //const [temp, setTemp] = useState('')
+  //const [name, setName] = useState ('')
   const [prezente,setPrezente]= useState([])
   const [prezenteNr,setPrezenteNr] = useState(0)
   const [signInName,setSignInName] = useState('')
@@ -41,13 +39,8 @@ function App () {
     // .catch(err => alert("a fost o eroare "+err))
     console.log(prezente)
   }
-
-  //let history = useHistory();
-  //console.log(history);
   
-  const onCheck = (event) =>{
-    //this.setState({name: event.target.value})
-    
+  const onCheck = (event) =>{    
     let temp = prezente
     if (event.target.checked){
       
@@ -56,8 +49,7 @@ function App () {
           temp.push({name:event.target.id, prezentaDate, cosemnat: user.cosemnat})
         }
       })
-      setPrezenteNr(temp.length)
-      //console.log(prezenteNr);
+      setPrezenteNr(prezenteNr)
       setPrezente(temp)
     } else {
       prezente.forEach((benef, i) => {
@@ -68,12 +60,10 @@ function App () {
         }
       })
     }
-    //console.log(prezente)
   }
-  let history = useHistory()
-  //console.log(user);
+
     return (
-      <Router>
+     
       <div>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -95,7 +85,6 @@ function App () {
           </Route>
         </Switch>
       </div>
-    </Router>
     );
   
 }

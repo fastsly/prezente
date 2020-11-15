@@ -20,6 +20,7 @@ import ListItem from "@material-ui/core/ListItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import {
@@ -31,15 +32,13 @@ import {
 import DatePicker from "react-datepicker";
 import Status from './Status'
 import "react-datepicker/dist/react-datepicker.css";
-//import
-
 // import { mainListItems, secondaryListItems } from './listItems';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
 import BeneficiariList from "./BeneficiariList";
 import Submit from "./Submit";
-import { FormControlLabel } from "@material-ui/core";
+//import { FormControlLabel } from "@material-ui/core";
 
 
 function Copyright() {
@@ -221,6 +220,9 @@ export default function Dashboard(props) {
             <ListItemText primary="Prezente" />
           </ListItem>
           <ListItem button onClick={handleStatusClick}>
+            <ListItemIcon>
+              <FormatListBulletedIcon/>
+            </ListItemIcon>
             <ListItemText primary="Status" />
           </ListItem>
           {props.user.admin?
@@ -235,7 +237,7 @@ export default function Dashboard(props) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='100%' className={classes.container}>
+        <Container maxWidth={false} className={classes.container}>
           <Grid container spacing={1}>
             <Grid item xs={12}>
               {test === "prezente" ? (
@@ -258,7 +260,7 @@ export default function Dashboard(props) {
                 </Paper>
               ) : (
                 <Paper className={classes.paper}>
-                  <Status/>
+                  <Status key="12345"/>
                 </Paper>
               )}
             </Grid>
