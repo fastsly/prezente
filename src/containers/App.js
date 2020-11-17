@@ -34,7 +34,8 @@ function App () {
       prezente
     ),
     }).then((res, req) =>{
-      setPrezente([])
+      console.log('we clear array')
+      setPrezente([]) 
       alert('Am reusit'+res.body)
     })
     .catch(err => alert("a fost o eroare "+err))
