@@ -46,7 +46,7 @@ function App () {
       
       benef.forEach(user =>{
         if (user.name === event.target.id){
-          temp.push({name:event.target.id, prezentaDate, cosemnat: user.cosemnat})
+          temp.push({name:event.target.id, date: prezentaDate, cosemnat: user.cosemnat})
         }
       })
       setPrezenteNr(temp.length)
