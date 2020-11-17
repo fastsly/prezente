@@ -27,18 +27,18 @@ function App () {
 
   const onSubmit = () =>{
     //send data to server
-    fetch("http://frozen-basin-35628.herokuapp.com/daily", {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(
-      prezente
-    ),
-    }).then((res, req) =>{
-      console.log('we clear array')
-      setPrezente([]) 
-      alert('Am reusit'+res.body)
-    })
-    .catch(err => alert("a fost o eroare "+err))
+    // fetch("http://frozen-basin-35628.herokuapp.com/daily", {
+    // method: "post",
+    // headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify(
+    //   prezente
+    // ),
+    // }).then((res, req) =>{
+    //   console.log('we clear array')
+    //   setPrezente([]) 
+    //   alert('Am reusit'+res.body)
+    // })
+    // .catch(err => alert("a fost o eroare "+err))
     console.log(prezente)
   }
   
@@ -46,9 +46,9 @@ function App () {
     let temp = prezente
     if (event.target.checked){
       
-      benef.forEach(user =>{
-        if (user.name === event.target.id){
-          temp.push({name:event.target.id, date: prezentaDate, cosemnat: user.cosemnat})
+      benef.forEach(benef =>{
+        if (benef.name === event.target.id){
+          temp.push({name:event.target.id, date: prezentaDate, cosemnat: user.name === 'Laci' ?"Szalai Laszlo":"Gergely Livia"})
         }
       })
       setPrezenteNr(temp.length)
