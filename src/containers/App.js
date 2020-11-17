@@ -26,17 +26,17 @@ function App () {
   const [user,setUser] = useState({name:'',admin: false,isAuth:false})
 
   const onSubmit = () =>{
-    // send data to server
-    // fetch("http://frozen-basin-35628.herokuapp.com/daily", {
-    // method: "post",
-    // headers: { "Content-Type": "application/json" },
-    // body: JSON.stringify(
-    //   prezente
-    // ),
-    // }).then((res, req) =>{
-    //   alert('Am reusit'+res.body)
-    // })
-    // .catch(err => alert("a fost o eroare "+err))
+    //send data to server
+    fetch("http://frozen-basin-35628.herokuapp.com/daily", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(
+      prezente
+    ),
+    }).then((res, req) =>{
+      alert('Am reusit'+res.body)
+    })
+    .catch(err => alert("a fost o eroare "+err))
     console.log(prezente)
   }
   
@@ -49,7 +49,7 @@ function App () {
           temp.push({name:event.target.id, prezentaDate, cosemnat: user.cosemnat})
         }
       })
-      setPrezenteNr(prezenteNr)
+      setPrezenteNr(temp.length)
       setPrezente(temp)
     } else {
       prezente.forEach((benef, i) => {

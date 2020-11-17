@@ -152,14 +152,14 @@ export default function Dashboard(props) {
   //const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   function handlePrezenteClick() {
-    console.log(history);
+    //console.log(history);
     setTest("prezente");
     history.push("/dashBoard/prezente");
   }
 
   function handleStatusClick() {
     setTest("status");
-    console.log(history);
+    //console.log(history);
     history.push("/dashBoard/status");
   }
 

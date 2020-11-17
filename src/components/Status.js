@@ -26,33 +26,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Status() {
   const [rows, setRows] = useState()
-  useEffect(()=>{
-    fetch('http://localhost:3001/status', {
-    method: 'get',
-    headers: {'Content-Type': 'application/json'}
-  })
-    .then(response => response.json())
-    .then(data => {
-      //console.table(data)
-      const tempRows =[]
-      data.map(value =>{
-        if (value.name && value.fisamonit && value.planpers){
-          //console.log(value)
-          const tempDate=[
-            new Date(value.planpers), 
-            new Date(value.fisamonit)
-          ]
-          tempRows.push(createData(
-            value.name,
-            tempDate[0].getFullYear()+'-'+tempDate[0].getMonth()+'-'+tempDate[0].getDate(),
-            tempDate[1].getFullYear()+'-'+tempDate[1].getMonth()+'-'+tempDate[1].getDate()
-            ))
-        }
-        return null
-      })
-      setRows(tempRows)
-  }).catch(console.log)
-  },[])
+  // useEffect(()=>{
+  //   fetch('http://localhost:3001/status', {
+  //   method: 'get',
+  //   headers: {'Content-Type': 'application/json'}
+  // })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     //console.table(data)
+  //     const tempRows =[]
+  //     data.map(value =>{
+  //       if (value.name && value.fisamonit && value.planpers){
+  //         //console.log(value)
+  //         const tempDate=[
+  //           new Date(value.planpers), 
+  //           new Date(value.fisamonit)
+  //         ]
+  //         tempRows.push(createData(
+  //           value.name,
+  //           tempDate[0].getFullYear()+'-'+tempDate[0].getMonth()+'-'+tempDate[0].getDate(),
+  //           tempDate[1].getFullYear()+'-'+tempDate[1].getMonth()+'-'+tempDate[1].getDate()
+  //           ))
+  //       }
+  //       return null
+  //     })
+  //     setRows(tempRows)
+  // }).catch(console.log)
+  // },[])
   const classes = useStyles();
   return (
     <React.Fragment>
