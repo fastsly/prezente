@@ -20,7 +20,7 @@ import ListItem from "@material-ui/core/ListItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import {
@@ -30,16 +30,11 @@ import {
   useHistory,
 } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import Status from './Status'
+import Status from "./Status";
 import "react-datepicker/dist/react-datepicker.css";
-// import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
 import BeneficiariList from "./BeneficiariList";
 import Submit from "./Submit";
 //import { FormControlLabel } from "@material-ui/core";
-
 
 function Copyright() {
   return (
@@ -62,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     //paddingRight: 0, // keep right padding when drawer closed
-    
   },
   toolbarIcon: {
     display: "flex",
@@ -221,16 +215,15 @@ export default function Dashboard(props) {
           </ListItem>
           <ListItem button onClick={handleStatusClick}>
             <ListItemIcon>
-              <FormatListBulletedIcon/>
+              <FormatListBulletedIcon />
             </ListItemIcon>
             <ListItemText primary="Status" />
           </ListItem>
-          {props.user.admin?
+          {props.user.admin ? (
             <ListItem button onClick={handleStatusClick}>
               <ListItemText primary="Admin" />
             </ListItem>
-            : null
-          }
+          ) : null}
         </List>
         {/* <Divider /> */}
         {/* <List>{secondaryListItems}</List> */}
@@ -243,7 +236,7 @@ export default function Dashboard(props) {
               {test === "prezente" ? (
                 <Paper className={classes.paper}>
                   <Typography component="h1" variant="h5">
-                    {"Data: "} 
+                    {"Data: "}
                     <DatePicker
                       selected={props.prezentaDate}
                       onChange={(date) => props.setPrezentaDate(date)}
@@ -255,12 +248,14 @@ export default function Dashboard(props) {
                     onCheck={props.onCheck}
                   />
                   {/* <div>{props.prezenteNr}</div> */}
-                  <Typography component="h1" variant="h5">Nr de prezente: {props.prezente.length}</Typography>
+                  <Typography component="h1" variant="h5">
+                    Nr de prezente: {props.prezente.length}
+                  </Typography>
                   <Submit onSubmit={props.onSubmit} />
                 </Paper>
               ) : (
                 <Paper className={classes.paper}>
-                  <Status key="12345"/>
+                  <Status key="12345" />
                 </Paper>
               )}
             </Grid>

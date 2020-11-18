@@ -9,8 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
 // Generate Status Data
-function createData(name, planpers, fisamonit) {
-  return { name, planpers, fisamonit };
+function createData(name, suspended, planpers, fisamonit, registrusapt, fisaeval) {
+  return { name, suspended, planpers, fisamonit , registrusapt, fisaeval};
 }
 
 function preventDefault(event) {
@@ -26,33 +26,39 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Status() {
   const [rows, setRows] = useState()
-  // useEffect(()=>{
-  //   fetch('http://localhost:3001/status', {
-  //   method: 'get',
-  //   headers: {'Content-Type': 'application/json'}
-  // })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     //console.table(data)
-  //     const tempRows =[]
-  //     data.map(value =>{
-  //       if (value.name && value.fisamonit && value.planpers){
-  //         //console.log(value)
-  //         const tempDate=[
-  //           new Date(value.planpers), 
-  //           new Date(value.fisamonit)
-  //         ]
-  //         tempRows.push(createData(
-  //           value.name,
-  //           tempDate[0].getFullYear()+'-'+tempDate[0].getMonth()+'-'+tempDate[0].getDate(),
-  //           tempDate[1].getFullYear()+'-'+tempDate[1].getMonth()+'-'+tempDate[1].getDate()
-  //           ))
-  //       }
-  //       return null
-  //     })
-  //     setRows(tempRows)
-  // }).catch(console.log)
-  // },[])
+  useEffect(()=>{
+    fetch('http://localhost:3001/status', {
+    method: 'get',
+    headers: {'Content-Type': 'application/json'}
+  })
+    .then(response => response.json())
+    .then(data => {
+      //console.table(data)
+      const tempRows =[]
+      data.map(value =>{
+        if (value.name && value.fisamonit && value.planpers){
+          //console.log(new Date(value.planpers))
+          const tempDate=[
+            value.planpers === "N/A"?"N/A":new Date(value.planpers), 
+            value.fisamonit === "N/A"?"N/A":new Date(value.fisamonit),
+            value.registrusapt === "N/A"?"N/A":new Date(value.registrusapt),
+            value.fisaeval === "N/A"?"N/A":new Date(value.fisaeval)
+          ]
+          //console.log(tempDate[0])
+          tempRows.push(createData(
+            value.name,
+            value.suspended,
+            value.planpers === "N/A" ? "N/A" : tempDate[0].toISOString().split('T')[0],
+            value.fisamonit === "N/A" ? "N/A" : tempDate[1].toISOString().split('T')[0],
+            value.registrusapt === "N/A" ? "N/A" : tempDate[2].toISOString().split('T')[0],
+            value.fisaeval === "N/A" ? "N/A" : tempDate[3].toISOString().split('T')[0],
+            ))
+        }
+        return null
+      })
+      setRows(tempRows)
+  }).catch(console.log)
+  },[])
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -63,19 +69,28 @@ export default function Status() {
             <TableCell>Name</TableCell>
             <TableCell>Plan Personalizat</TableCell>
             <TableCell>Fisa Monitorizare</TableCell>
-            {/* <TableCell>Registru Saptamanal</TableCell> */}
-            {/* <TableCell align="left">Fisa de Evaluare</TableCell> */}
+            <TableCell>Registru Saptamanal</TableCell>
+            <TableCell align="left">Fisa de Evaluare</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows?
           rows.map((row) => (
-            <TableRow key={row.id}>
+            !row.suspended?
+            <TableRow key={row.id} >
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.planpers}</TableCell>
               <TableCell>{row.fisamonit}</TableCell>
-              {/* <TableCell>{row.paymentMethod}</TableCell> 
-              <TableCell align="left">{row.amount}</TableCell> */}
+              <TableCell>{row.registrusapt}</TableCell> 
+              <TableCell align="left">{row.fisaeval}</TableCell>
+            </TableRow>
+            :
+            <TableRow key={row.id} style= {{backgroundColor:'gray'}}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.planpers}</TableCell>
+              <TableCell>{row.fisamonit}</TableCell>
+              <TableCell>{row.registrusapt}</TableCell> 
+              <TableCell align="left">{row.fisaeval}</TableCell>
             </TableRow>
           ))
           :<TableRow>
