@@ -153,6 +153,7 @@ export default function Dashboard(props) {
 
   function handleStatusClick() {
     setTest("status");
+    console.log(`the popupseen is ${props.popUpseen}`);
     //console.log(history);
     history.push("/dashBoard/status");
   }
@@ -255,7 +256,7 @@ export default function Dashboard(props) {
                 </Paper>
               ) : (
                 <Paper className={classes.paper}>
-                  <Status key="12345" />
+                  <Status key="12345" popUpseen={props.popUpseen} setPopUpSeen={props.setPopUpSeen} />
                 </Paper>
               )}
             </Grid>

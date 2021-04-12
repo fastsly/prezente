@@ -7,6 +7,7 @@ import SignIn from "../components/SignIn";
 import Dashboard from "../components/Dashboard";
 
 function App() {
+  const [popUpseen, setPopUpSeen] = useState(false)
   const [prezentaDate, setPrezentaDate] = useState(new Date());
   //const [temp, setTemp] = useState('')
   //const [name, setName] = useState ('')
@@ -17,6 +18,7 @@ function App() {
   //const [admin,setAdmin] = useState(false)
   const [user, setUser] = useState({ name: "", admin: false, isAuth: false });
   const [benef, setBenef] = useState([]);
+  
 
   useEffect(() => {
     fetch("http://localhost:3001/list/get", {
@@ -90,6 +92,8 @@ function App() {
             <Dashboard
               prezentaDate={prezentaDate}
               setPrezentaDate={setPrezentaDate}
+              popUpseen={popUpseen}
+              setPopUpSeen={setPopUpSeen}
               benef={benef}
               onCheck={onCheck}
               onSubmit={onSubmit}
