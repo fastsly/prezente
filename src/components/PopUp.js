@@ -8,6 +8,7 @@ function PopUp (props){
   const [fisaMonit,setFisaMonit] = useState()
   const [registruSapt, setRegistruSapt] = useState()
   const [fisaEval, setFisaEval] = useState()
+  const [addNameToList, setAddNameToList] = useState()
 
   const onPlanpersChange = (event) => {
     setPlanpers(event.target.value)
@@ -21,7 +22,48 @@ function PopUp (props){
   const onFisaEvalChange = (event) => {
     setFisaEval(event.target.value)
   }
+  const onNamechange =(event) => {
+    setAddNameToList(event.target.value)
+  }
 
+  if(props.btn === `add`){
+    const addList = () =>{
+      console.log(planPers)
+      fetch("http://localhost:3001/list/add", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        {list:{
+          name:addNameToList
+          }
+        }
+      ),
+      }).then((res, req) =>{
+        console.log('We added new name to database')
+        //alert('Am reusit')
+        props.fetch()
+        props.toggle()
+      })
+      .catch(err => alert("a fost o eroare "+err))
+    }
+    return (
+      <div className="modal">
+        <div className="modal_content">
+          <span className="close" onClick={props.toggle}>
+            &times;
+          </span>
+          <div>
+            <label>
+              Nume:
+              <input type="text" name="name"  onChange={onNamechange}/>
+            </label>
+            <br/>
+            <input type="submit" onClick={addList}/>
+          </div>
+        </div>
+      </div>
+    );
+  }else{
   const updateDates = () =>{
     console.log(planPers)
     fetch("http://localhost:3001/updateStatus", {
@@ -81,7 +123,7 @@ function PopUp (props){
         </div>
       </div>
     );
-  
+    }
 }
 
 export default PopUp;

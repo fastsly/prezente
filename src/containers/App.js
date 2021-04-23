@@ -18,6 +18,7 @@ function App() {
   //const [admin,setAdmin] = useState(false)
   const [user, setUser] = useState({ name: "", admin: false, isAuth: false });
   const [benef, setBenef] = useState([]);
+  const [addToListSeen,setAddToListSeen] = useState(false);
   
 
   useEffect(() => {
@@ -99,6 +100,8 @@ function App() {
               onSubmit={onSubmit}
               user={user}
               prezente={prezente}
+              addToListSeen={addToListSeen}
+              setAddToListSeen={setAddToListSeen}
             />
           ) : (
             <Redirect to="/" />

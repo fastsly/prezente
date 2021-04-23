@@ -72,6 +72,7 @@ export default function Status(props) {
   useEffect(()=>{
     //console.log(popUpseen);
     props.setPopUpSeen(!props.popUpseen)
+    props.setAddToListSeen(!props.addToListSeen)
     fetch('http://localhost:3001/status', {
     method: 'get',
     headers: {'Content-Type': 'application/json'}
@@ -114,7 +115,11 @@ export default function Status(props) {
   let togglePop = () => {
     console.log(`the popupseen in status is ${props.popUpseen}`);
     props.setPopUpSeen(!props.popUpseen)
+    
   };
+  let togglePopAdd =()=>{
+    props.setAddToListSeen(!props.addToListSeen)
+  }
 
   let suspend = (event)=>{
     fetch("http://localhost:3001/suspend", {
@@ -138,7 +143,9 @@ export default function Status(props) {
   return (
     <React.Fragment>
       {props.popUpseen ? null : <PopUp btn={selectedButon} toggle={togglePop} fetch={fetchList}/>}
+      {props.addToListSeen ? null : <PopUp btn={`add`} toggle={togglePopAdd} fetch={fetchList}/>}
       <Title>Starea fiselor</Title>
+      <button onClick={togglePopAdd}>Add</button>
       <Table size="small">
         <TableHead>
         <TableRow>

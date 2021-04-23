@@ -256,7 +256,13 @@ export default function Dashboard(props) {
                 </Paper>
               ) : (
                 <Paper className={classes.paper}>
-                  <Status key="12345" popUpseen={props.popUpseen} setPopUpSeen={props.setPopUpSeen} />
+                  <Status 
+                  key="12345" 
+                  popUpseen={props.popUpseen} 
+                  setPopUpSeen={props.setPopUpSeen} 
+                  addToListSeen={props.addToListSeen}
+                  setAddToListSeen={props.setAddToListSeen}
+                  />
                 </Paper>
               )}
             </Grid>
