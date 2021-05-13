@@ -46,9 +46,9 @@ function App() {
     }).then((res, req) =>{
       console.log('we clear array')
       setPrezente([])
-      alert('Am reusit'+res.body)
+      alert('Am reusit'+JSON.stringify(res.body))
     })
-    .catch(err => alert("a fost o eroare "+err))
+    .catch(err => alert("a fost o eroare "+JSON.stringify(err)))
     //console.log(prezente);
   };
 
