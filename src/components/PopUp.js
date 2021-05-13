@@ -29,7 +29,7 @@ function PopUp (props){
   if(props.btn === `add`){
     const addList = () =>{
       console.log(planPers)
-      fetch("http://localhost:3001/list/add", {
+      fetch("http://frozen-basin-35628.herokuapp.com/list/add", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(
@@ -66,7 +66,7 @@ function PopUp (props){
   }else{
   const updateDates = () =>{
     console.log(planPers)
-    fetch("http://localhost:3001/updateStatus", {
+    fetch("http://frozen-basin-35628.herokuapp.com/updateStatus", {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(

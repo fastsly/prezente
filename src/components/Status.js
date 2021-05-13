@@ -32,7 +32,7 @@ export default function Status(props) {
   const [selectedButon, setSelectedButton] = useState('')
   
   const fetchList = ()=>{
-    fetch('http://localhost:3001/status', {
+    fetch('http://frozen-basin-35628.herokuapp.com/status', {
     method: 'get',
     headers: {'Content-Type': 'application/json'}
   })
@@ -73,7 +73,7 @@ export default function Status(props) {
     //console.log(popUpseen);
     props.setPopUpSeen(!props.popUpseen)
     props.setAddToListSeen(!props.addToListSeen)
-    fetch('http://localhost:3001/status', {
+    fetch('http://frozen-basin-35628.herokuapp.com/status', {
     method: 'get',
     headers: {'Content-Type': 'application/json'}
   })
@@ -122,7 +122,7 @@ export default function Status(props) {
   }
 
   let suspend = (event)=>{
-    fetch("http://localhost:3001/suspend", {
+    fetch("http://frozen-basin-35628.herokuapp.com/suspend", {
     method: "put",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(

@@ -22,7 +22,7 @@ function App() {
   
 
   useEffect(() => {
-    fetch("http://localhost:3001/list/get", {
+    fetch("http://frozen-basin-35628.herokuapp.com/list/get", {
       method: "get",
       headers: { "Content-Type": "apllication/json" },
     })
