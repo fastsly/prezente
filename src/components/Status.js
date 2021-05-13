@@ -145,7 +145,7 @@ export default function Status(props) {
       {props.popUpseen ? null : <PopUp btn={selectedButon} toggle={togglePop} fetch={fetchList}/>}
       {props.addToListSeen ? null : <PopUp btn={`add`} toggle={togglePopAdd} fetch={fetchList}/>}
       <Title>Starea fiselor</Title>
-      <button onClick={togglePopAdd}>Add</button>
+      <button style={{width: '100px'}}onClick={togglePopAdd}>Add</button>
       <Table size="small">
         <TableHead>
         <TableRow>
