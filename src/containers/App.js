@@ -37,19 +37,19 @@ function App() {
 
   const onSubmit = () => {
     //send data to server
-    // fetch("http://frozen-basin-35628.herokuapp.com/daily", {
-    // method: "post",
-    // headers: { "Content-Type": "application/json" },
-    // body: JSON.stringify(
-    //   prezente
-    // ),
-    // }).then((res, req) =>{
-    //   console.log('we clear array')
-    //   setPrezente([])
-    //   alert('Am reusit'+res.body)
-    // })
-    // .catch(err => alert("a fost o eroare "+err))
-    console.log(prezente);
+    fetch("http://frozen-basin-35628.herokuapp.com/daily", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(
+      prezente
+    ),
+    }).then((res, req) =>{
+      console.log('we clear array')
+      setPrezente([])
+      alert('Am reusit'+res.body)
+    })
+    .catch(err => alert("a fost o eroare "+err))
+    //console.log(prezente);
   };
 
   const onCheck = (event) => {
