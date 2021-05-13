@@ -68,6 +68,7 @@ function PopUp (props){
     //console.log(planPers)
     fetch("http://frozen-basin-35628.herokuapp.com/updateStatus", {
     method: "post",
+    mode: 'cors',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(
       {addStatus:{
@@ -79,12 +80,15 @@ function PopUp (props){
         }
       }
     ),
-    },{mode: 'cors'}).then((res, req) =>{
+    }).then((res, req) =>{
       alert('Am reusit')
       props.fetch()
       props.toggle()
     })
-    .catch(err => alert("A fost o eroare "+err))
+    .catch(err =>{ alert("A fost o eroare "+err)
+    props.fetch()
+      props.toggle()
+  })
   }
 
 
