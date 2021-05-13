@@ -70,7 +70,7 @@ function PopUp (props){
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(
-      {status:{
+      {addStatus:{
         name:props.btn,
         planpers:planPers,
         fisamonit:fisaMonit,
@@ -80,8 +80,7 @@ function PopUp (props){
       }
     ),
     }).then((res, req) =>{
-      console.log('we clear array')
-      //alert('Am reusit')
+      alert('Am reusit')
       props.fetch()
       props.toggle()
     })
